@@ -12,7 +12,7 @@ const Header = (props) => {
 };
 
 Header.defaultProps = {
-  title: 'Link Station FInder'
+  title: 'Link Station Finder'
 };
 
 export default Header;

@@ -9,7 +9,7 @@ const Action = (props) => {
       onClick={props.handlePick}
       disabled={!props.isActivated}
       >
-      Find the best stations for your points</button>
+      Click to find the best stations for your points</button>
     </div>
 
   );

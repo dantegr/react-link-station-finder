@@ -6,6 +6,7 @@ import AddStation from './components/AddStation';
 import Stations from './components/Stations';
 import Action from './components/Action';
 import './App.css';
+import Swal from 'sweetalert2';
 
 export default class App extends React.Component {
   state ={
@@ -27,7 +28,7 @@ export default class App extends React.Component {
       if (distance > station[2] ) {
         return 0;
       } else{
-      return Math.pow(Math.abs(station[2] - distance) ,2);
+      return Math.round((Math.pow(Math.abs(station[2] - distance) ,2)) * 100) / 100;
       }
     };
     
@@ -53,7 +54,17 @@ export default class App extends React.Component {
       };
     }
 
-    alert(this.state.results.join("\n"));
+   
+
+    Swal.fire({
+      title: 'Results',
+      html:'<ul style="text-align:left;"><li>' + this.state.results.join("</li><li>") + '</li></ul>',
+      type:'info',
+      width: '500px'}).then(this.setState(() => ({
+        points: [],
+        stations: [],
+        results: []
+      })));
   };
 
   
@@ -152,29 +163,31 @@ export default class App extends React.Component {
   return (
     <div>
       <Header  subtitle={subtitle}/>
-      <Action 
-        isActivated={this.state.stations.length > 0 && this.state.points.length > 0}
-        handlePick={this.handlePick}
-      />
-      <div className="widget-points">
-        <Points 
-          points={this.state.points}
-          handleDeletePoints={this.handleDeletePoints}
-          handleDeletePoint={this.handleDeletePoint}
+      <div className="container">
+        <Action 
+          isActivated={this.state.stations.length > 0 && this.state.points.length > 0}
+          handlePick={this.handlePick}
         />
-        <AddPoint 
-          handleAddPoint={this.handleAddPoint}
+        <div className="widget">
+          <Points 
+            points={this.state.points}
+            handleDeletePoints={this.handleDeletePoints}
+            handleDeletePoint={this.handleDeletePoint}
+          />
+          <AddPoint 
+            handleAddPoint={this.handleAddPoint}
+          />
+        </div>
+        <div className="widget">
+        <Stations 
+          stations={this.state.stations}
+          handleDeleteStations={this.handleDeleteStations}
+          handleDeleteStation={this.handleDeleteStation}
+        />
+        <AddStation
+          handleAddStation={this.handleAddStation}
         />
       </div>
-      <div className="widget-stations">
-      <Stations 
-        stations={this.state.stations}
-        handleDeleteStations={this.handleDeleteStations}
-        handleDeleteStation={this.handleDeleteStation}
-      />
-      <AddStation
-        handleAddStation={this.handleAddStation}
-      />
     </div>
     </div>
 

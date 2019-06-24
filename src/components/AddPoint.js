@@ -26,8 +26,8 @@ export default class AddPoint extends React.Component {
       <div>
         {this.state.error && <p className="add-point-error">{this.state.error}</p>}
         <form className="add-point" onSubmit={this.handleAddPoint}>
-          <input className="add-point__input" type="text" name="pointX" placeholder="X coordinate"/>
-          <input className="add-point__input" type="text" name="pointY" placeholder="Y coordinate"/>
+          <input className="add-point__input" type="number" name="pointX" placeholder="X coordinate"/>
+          <input className="add-point__input" type="number" name="pointY" placeholder="Y coordinate"/>
           <button className="button">Add Point</button>
         </form>
       </div>

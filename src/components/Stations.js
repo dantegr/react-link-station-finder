@@ -11,7 +11,7 @@ const Stations = (props) => {
         className="button button--link"
         onClick={props.handleDeleteStations}>Remove All</button>
       </div>
-    {props.stations.length === 0 && <p className="widget-message">Please add staton coordinates and reach</p>}
+    {props.stations.length === 0 && <p className="widget-message">Please add station coordinates and reach</p>}
       
       {
         props.stations.map((station,index) => (

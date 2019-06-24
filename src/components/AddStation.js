@@ -29,9 +29,9 @@ export default class AddStation extends React.Component {
       <div>
         {this.state.error && <p className="add-station-error">{this.state.error}</p>}
         <form className="add-station" onSubmit={this.handleAddStation}>
-          <input className="add-station__input" type="text" name="stationX" placeholder="X coordinate"/>
-          <input className="add-station__input" type="text" name="stationY" placeholder="Y coordinate"/>
-          <input className="add-station__input" type="text" name="stationZ" placeholder="Reach"/>
+          <input className="add-station__input" type="number" name="stationX" placeholder="X coordinate"/>
+          <input className="add-station__input" type="number" name="stationY" placeholder="Y coordinate"/>
+          <input className="add-station__input" type="number" name="stationZ" placeholder="Reach"/>
           <button className="button">Add Station</button>
         </form>
       </div>
