@@ -1,3 +1,5 @@
+//This component handles the display of the Stations Block  with all the stations the user provided. It includes the Stations componet and it also utilizes the handleDeleteStations function that removes all the station inputs from the state.
+
 import React from 'react';
 import Station from './Station';
 

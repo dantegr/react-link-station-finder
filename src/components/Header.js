@@ -1,3 +1,5 @@
+//This is the Header Componet that handles the display of the tilte and subtule of the app.
+
 import React from 'react';
 
 const Header = (props) => {

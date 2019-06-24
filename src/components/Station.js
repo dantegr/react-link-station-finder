@@ -1,3 +1,5 @@
+//This component handles the display of a single station that the user provided. There is also a call to the handleDeleteStation function in order to remove from the state.
+
 import React from 'react';
 
 const Station = (props) => {

@@ -15,7 +15,8 @@ export default class App extends React.Component {
     results: []
   };
 
-  handlePick = () => {
+  // This function handles the final solution and displays it in a modal. It is utilized by the Action Component
+  handleSolution = () => {
 
     const findDistance = (pointA, pointB) => {
       return Math.sqrt(Math.pow(Math.abs(pointA[0] - pointB[0]), 2) + Math.pow(Math.abs(pointA[1] - pointB[1]), 2));
@@ -55,7 +56,7 @@ export default class App extends React.Component {
     }
 
    
-
+    //This initializes a modal alert with the solution
     Swal.fire({
       title: 'Results',
       html:'<ul style="text-align:left;"><li>' + this.state.results.join("</li><li>") + '</li></ul>',
@@ -67,11 +68,12 @@ export default class App extends React.Component {
       })));
   };
 
-  
+  //This function deletes the stations array by setting it to an empty array. It is utilized by the Stations component.
   handleDeleteStations = () => {
     this.setState(() => ({stations: [] }));
   }
 
+  //This function deletes a single station input from the stations array. It is utilized by the Stations component.
   handleDeleteStation = (stationToRemove) => {
     this.setState((prevState) => ({
       stations:prevState.stations.filter ((station) => {
@@ -80,21 +82,17 @@ export default class App extends React.Component {
     }));
   }
 
+  //This functions add a station input to the stations array. It is utilized by the AddStation component.
   handleAddStation = (station) => {
-    if (!station) {
-      return 'Enter valid value';
-    }else if (this.state.stations.indexOf(station)> -1) {
-      return 'This option already exists'
-    }
-
     this.setState((prevState) => ({ stations: prevState.stations.concat([station])}));
   }
 
-    
+  //This function deletes the points array by setting it to an empty array. It is utilized by the Points component.     
   handleDeletePoints = () => {
     this.setState(() => ({points: [] }));
   }
 
+  //This function deletes a single point input from the points array. It is utilized by the Points component.
   handleDeletePoint = (pointToRemove) => {
     this.setState((prevState) => ({
       points:prevState.points.filter ((point) => {
@@ -103,60 +101,12 @@ export default class App extends React.Component {
     }));
   }
 
+   //This functions add a point input to the points array. It is utilized by the AddStation component.
   handleAddPoint = (point) => {
-    if (!point) {
-      return 'Enter valid value';
-    }else if (this.state.points.indexOf(point)> -1) {
-      return 'This option already exists'
-    }
-
     this.setState((prevState) => ({ points: prevState.points.concat([point])}));
   }
 
-  componentDidMount() {
-    try {
-      const json = localStorage.getItem('points');
-      const points = JSON.parse(json);
-      
-      if (points){
-      this.setState(() => ({points: points}));
-      }
-    }catch (e) {
-      //do nothing
-    }
-
-    try {
-      const json = localStorage.getItem('stations');
-      const stations = JSON.parse(json);
-      
-      if (stations){
-      this.setState(() => ({stations: stations}));
-      }
-    }catch (e) {
-      //do nothing
-    }
-  
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.points.length !== this.state.points.length) {
-      const json = JSON.stringify(this.state.points);
-      localStorage.setItem('points',json);
-      console.log ('saving data');
-    }
-
-    if (prevState.points.length !== this.state.stations.length) {
-      const json = JSON.stringify(this.state.stations);
-      localStorage.setItem('stations',json);
-      console.log ('saving data');
-    }
-  }
-
-  componentWillUnmount() {
-    console.log('component Will unmount!');
-  }
-
-
+  //Main Render
   render() {
     const subtitle = 'Calculate the Best Station for each point';
 
@@ -166,7 +116,7 @@ export default class App extends React.Component {
       <div className="container">
         <Action 
           isActivated={this.state.stations.length > 0 && this.state.points.length > 0}
-          handlePick={this.handlePick}
+          handleSolution={this.handleSolution}
         />
         <div className="widget">
           <Points 

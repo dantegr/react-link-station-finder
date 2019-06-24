@@ -1,3 +1,5 @@
+//This component handles the input form of a Point value and passes it to the state utilizing the handleAddPoint function
+
 import React from 'react';
 
 export default class AddPoint extends React.Component {

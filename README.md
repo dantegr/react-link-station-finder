@@ -27,4 +27,6 @@ Print out function output from points (x, y):
 (0,0), (100, 100), (15,10) and (18, 18).
 
 # Usage 
-Clone the repo to your pc then using your favorite terminal software navigate to the repo folder and type the following ```yarn start``` to initialize the project locally 
+Clone the repo to your pc then using your favorite terminal software navigate to the repo folder and type the following ```yarn start``` to initialize the project locally
+
+You can also find the solution deployed at : https://react-link-station-finder.herokuapp.com/ 

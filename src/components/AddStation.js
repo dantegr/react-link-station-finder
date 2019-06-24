@@ -1,3 +1,5 @@
+//This component handles the input form of a Station value and passes it to the state utilizing the handleAddStation function
+
 import React from 'react';
 
 export default class AddStation extends React.Component {

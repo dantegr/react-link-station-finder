@@ -1,3 +1,5 @@
+//This component handles the display of the Points Block  with all the points the user provided. It includes the Point componet and it also utilizes the handleDeletePointsFunction that removes all the point inputs from the state.
+
 import React from 'react';
 import Point from './Point';
 
