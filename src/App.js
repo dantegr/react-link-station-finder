@@ -2,15 +2,43 @@ import React from 'react';
 import Header from './components/Header';
 import AddPoint from './components/AddPoint';
 import Points from './components/Points';
+import AddStation from './components/AddStation';
+import Stations from './components/Stations';
 import './App.css';
 
 export default class App extends React.Component {
   state ={
     points: [],
-    selectedPoint: undefined
+    selectedPoint: undefined,
+    stations: [],
+    selectedStation: undefined,
+
   };
 
   
+  handleDeleteStations = () => {
+    this.setState(() => ({stations: [] }));
+  }
+
+  handleDeleteStation = (stationToRemove) => {
+    this.setState((prevState) => ({
+      stations:prevState.stations.filter ((station) => {
+        return stationToRemove !==station;
+      })
+    }));
+  }
+
+  handleAddStation = (station) => {
+    if (!station) {
+      return 'Enter valid value';
+    }else if (this.state.stations.indexOf(station)> -1) {
+      return 'This option already exists'
+    }
+
+    this.setState((prevState) => ({ stations: prevState.stations.concat([station])}));
+  }
+
+    
   handleDeletePoints = () => {
     this.setState(() => ({points: [] }));
   }
@@ -64,7 +92,7 @@ export default class App extends React.Component {
   return (
     <div>
       <Header  subtitle={subtitle}/>
-      <div className="widget">
+      <div className="widget-points">
         <Points 
           points={this.state.points}
           handleDeletePoints={this.handleDeletePoints}
@@ -74,6 +102,16 @@ export default class App extends React.Component {
           handleAddPoint={this.handleAddPoint}
         />
       </div>
+      <div className="widget-stations">
+      <Stations 
+        stations={this.state.stations}
+        handleDeleteStations={this.handleDeleteStations}
+        handleDeleteStation={this.handleDeleteStation}
+      />
+      <AddStation
+        handleAddStation={this.handleAddStation}
+      />
+    </div>
     </div>
 
   );
